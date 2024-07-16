@@ -1,0 +1,9 @@
+.VPDoc.has-aside .content-container {
+	max-width: unset !important;
+}
+.language-ts, .language-swift {
+  display: inline-flex;
+	width: 50%;
+}
+/* .language-ts {} */
+/* .language-swift {} */

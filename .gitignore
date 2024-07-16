@@ -1,3 +1,4 @@
+.vitepress/cache
 # Logs
 logs
 *.log
