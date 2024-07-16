@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Swift VS TypeScript",
   description: "Comparison CheatSheet for Swift VS TypeScript",
   srcDir: './pages',
+  base: '/SwiftVsTypeScript/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.png',
