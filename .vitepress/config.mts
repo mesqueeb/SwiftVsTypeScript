@@ -19,6 +19,7 @@ export default defineConfig({
   ],
   srcDir: './pages',
   base: '/SwiftVsTypeScript/',
+  appearance: 'dark',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.png',
