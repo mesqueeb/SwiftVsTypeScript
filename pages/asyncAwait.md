@@ -1,6 +1,6 @@
-# Promises
+# Async Await
 
-## Instantiation
+## Promise Instantiation
 
 ```ts
 // create a one-off promise
