@@ -56,6 +56,31 @@ const index = string.lastIndexOf(characters)
 let index = string.range(of: characters, options: .backwards)?.lowerBound.utf16Offset(in: string)
 ```
 
+## .matchAll
+
+```ts
+const regex = /t(e)(st(\d?))/g
+
+for (const match of "test1test2".matchAll(regex)) {
+  console.log(`Found: ${match[0]}, groups: [${match[1]}, ${match[2]}, ${match[3]}] start: ${match.index}`)
+}
+// Found: test1, groups: [e, st1, 1] start: 0
+// Found: test2, groups: [e, st2, 2] start: 5
+```
+
+```swift
+import RegexBuilder
+// global by default
+let regex = /t(e)(st(\d?))/
+let string = "test1test2"
+
+for match of string.matches(of: regex) {
+		print("Found: \(match[0]), groups: [\(match[1]), \(match[2]), \(match[3])] start: \(match.range.lowerBound.utf16Offset(in: string))")
+}
+// Found: test1, groups: [e, st1, 1] start: 0
+// Found: test2, groups: [e, st2, 2] start: 5
+```
+
 ## .padEnd
 
 ```ts
