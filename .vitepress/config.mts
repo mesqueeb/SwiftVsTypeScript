@@ -33,6 +33,7 @@ export default defineConfig({
         items: [
           { text: 'Arrays', link: '/arrays' },
           { text: 'Objects', link: '/objects' },
+          { text: 'Strings', link: '/strings' },
           { text: 'Loops', link: '/loops' },
           { text: 'Async Await', link: '/asyncAwait' },
         ]
