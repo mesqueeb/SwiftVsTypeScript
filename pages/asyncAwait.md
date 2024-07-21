@@ -7,45 +7,66 @@
 const promise = new Promise<string>((resolve, reject) => {
 	// resolve the promise
 	resolve("resolved value")
-	// or reject the promise
+	// OR
+	// reject the promise
 	reject("error message")
 })
 
-// return a promise from a function
+// return a promise from a function to manually resolve or reject
 function asyncFunction1(): Promise<void> {
 	return new Promise((resolve, reject) => {/* ... */})
 }
 
-// an async function returns a promise implicitly
+// an async function allows await usage and returns a promise implicitly
 async function asyncFunction2(): Promise<void> {
 	await /* ... */
 }
 ```
 
 ```swift
-enum ErrorEnum: Error { case errorCase }
+enum CustomError: Error { case errorCase }
 
-// create a one-off task
-// a `Task` instance is similar to a TS `Promise` instance.
-let task = Task {
-	// in Swift any async function needs to be awaited:
-	try await withCheckedThrowingContinuation { continuation in
-		// resolve the continuation
-		continuation.resume(returning: "resolved value")
-		// or reject the continuation
-		continuation.resume(throwing: ErrorEnum.errorCase)
-  }
+// create an async let
+async let value = withCheckedThrowingContinuation { continuation in
+	// resume the continuation and return
+	continuation.resume(returning: "resolved value")
+	// OR
+	// resume the continuation and throw
+	continuation.resume(throwing: CustomError.errorCase)
 }
 
-// an async function with manual continuation
+// return withCheckedThrowingContinuation from a function to manually return or throw
 func asyncFunction1() async throws {
 	try await withCheckedThrowingContinuation { continuation in /* ... */ }
 }
 
-// an async function
+// an async function allows await usage
 func asyncFunction2() async {
 	await /* ... */
 }
+```
+
+## await a promise
+
+```ts
+const promise = fetchSomething()
+// ...
+const value = await promise
+value // the resolved value
+```
+
+```swift
+async let value = fetchSomething()
+// ...
+await value
+value // the resolved value
+
+// OR create a Task
+// a `Task` instance is similar to a TS `Promise` instance
+let task = Task { await fetchSomething() }
+// ...
+let value = await task.value
+value // the resolved value
 ```
 
 ## await timeout
@@ -62,8 +83,7 @@ try await Task.sleep(for: .milliseconds(1_000))
 
 ```ts
 try {
-	const promise = new Promise(/* ... */)
-	const value = await promise
+	const value = await fetchSomething()
 	// handle resolved value
 } catch (error) {
 	// handle error message
@@ -72,8 +92,7 @@ try {
 
 ```swift
 do {
-	let task = Task { /* ... */ }
-	let value = try await task.value
+	let value = try await somethingAsync()
 	// handle resolved value
 } catch {
 	// handle error
