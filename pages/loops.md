@@ -66,7 +66,7 @@ while i < 3 {
 }
 ```
 
-## for (const key in object)
+## for key in object
 
 ```ts
 for (const key in object) {
