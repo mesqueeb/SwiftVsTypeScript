@@ -36,11 +36,16 @@ export default defineConfig({
           { text: 'Strings', link: '/strings' },
           { text: 'Loops', link: '/loops' },
           { text: 'Async Await', link: '/asyncAwait' },
+          { text: 'Sets', link: '/sets' },
+          { text: 'Maps', link: '/maps' },
         ]
       }
     ],
     socialLinks: [
       { icon: 'github', link: 'https://github.com/mesqueeb' }
-    ]
+    ],
+    footer: {
+      message: 'Made with 💙 by <a href="https://github.com/mesqueeb">Luca Ban - mesqueeb</a>',
+    },
   }
 })

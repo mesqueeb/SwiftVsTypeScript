@@ -6,6 +6,7 @@ hero:
   name: "Swift VS TypeScript"
   text: "Comparison CheatSheet"
   tagline: For those dabbling in both languages 👏🏻
+
   image:
     src: /logo.png
     alt: Swift VS TypeScript Logo
@@ -26,3 +27,4 @@ hero:
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
+Currently takes a TypeScript first approach, for TS devs looking to learn Swift. PRs welcome to add a Swift first approach for Swift devs looking to learn TS!

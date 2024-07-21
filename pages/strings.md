@@ -10,11 +10,13 @@ const character = string.at(index)
 ```
 
 ```swift
-// No equivalent, use JustSugar library
+// No equivalent, use JustSugar* library
 import JustSugar
 
 let character = string.at(index)
 ```
+
+<sub class="text-right">* see JustSugar [String.at(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/at(_:))</sub>
 
 ## .endsWith
 
@@ -44,7 +46,12 @@ const index = string.indexOf(characters)
 
 ```swift
 let index = string.range(of: characters)?.lowerBound.utf16Offset(in: string)
+
+// Shorthand with `import JustSugar` *
+let index = string.indexOf(characters)
 ```
+
+<sub class="text-right">* see JustSugar [String.indexOf(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/indexof(_:))</sub>
 
 ## .lastIndexOf
 
@@ -54,7 +61,12 @@ const index = string.lastIndexOf(characters)
 
 ```swift
 let index = string.range(of: characters, options: .backwards)?.lowerBound.utf16Offset(in: string)
+
+// Shorthand with `import JustSugar` *
+let index = string.lastIndexOf(characters)
 ```
+
+<sub class="text-right">* see JustSugar [String.lastIndexOf(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/lastindexof(_:))</sub>
 
 ## .matchAll
 
@@ -140,11 +152,13 @@ const characters = string.slice(start, end)
 ```
 
 ```swift
-// No equivalent, use JustSugar library
+// No equivalent, use JustSugar* library
 import JustSugar
 
 let characters = string.slice(start, end)
 ```
+
+<sub class="text-right">* see JustSugar [String.slice(_:_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/slice(_:_:))</sub>
 
 ## .split
 
@@ -156,7 +170,12 @@ const array = string.split(characters)
 let array = string.split(separator: characters, omittingEmptySubsequences: false).map(String.init)
 // or
 let array = string.components(separatedBy: characters)
+
+// Shorthand with `import JustSugar` *
+let array = string.split(characters)
 ```
+
+<sub class="text-right">* see JustSugar [String.split(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/split(_:)-1gpf2)</sub>
 
 ## .startsWith
 
@@ -196,28 +215,43 @@ const trimmed = string.trim()
 
 ```swift
 let trimmed = string.trimmingCharacters(in: .whitespacesAndNewlines)
+
+// Shorthand with `import JustSugar` *
+let trimmed = string.trim()
 ```
+
+<sub class="text-right">* see JustSugar [String.trim()](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/trim())</sub>
 
 ## .trimEnd
 
 ```ts
-let trimmed = string.trimEnd()
+const trimmed = string.trimEnd()
 ```
 
 ```swift
 if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted, options: .backwards) {
 	let trimmed = String(string[..<range.upperBound])
 }
+
+// Shorthand with `import JustSugar` *
+let trimmed = string.trimStart()
 ```
+
+<sub class="text-right">* see JustSugar [String.trimEnd()](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/trimEnd())</sub>
 
 ## .trimStart
 
 ```ts
-let trimmed = string.trimStart()
+const trimmed = string.trimStart()
 ```
 
 ```swift
 if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted) {
 	let trimmed = String(string[range.lowerBound...])
 }
+
+// Shorthand with `import JustSugar` *
+let trimmed = string.trimStart()
 ```
+
+<sub class="text-right">* see JustSugar [String.trimStart()](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/trimStart())</sub>

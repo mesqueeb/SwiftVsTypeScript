@@ -2,8 +2,15 @@
 	max-width: unset !important;
 }
 .language-ts, .language-swift {
-  display: inline-flex;
-	width: 50%;
+	display: inline-flex;
+	width: calc(50% - 8px);
 }
-/* .language-ts {} */
-/* .language-swift {} */
+.language-ts {
+	margin-right: 8px !important;
+}
+.text-right {
+	text-align: right;
+}
+sub.text-right {
+	display: block;
+}

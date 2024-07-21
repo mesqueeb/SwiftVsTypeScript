@@ -3,12 +3,30 @@
 ## Instantiation
 
 ```ts
-const object1 = { key1: "value1", key2: "value2" }
-const object2 = Object.fromEntries([["key1", "value1"], ["key2", "value2"]])
+// in TS order of insertion is not guaranteed with objects (use Map for this)
+
+// empty object
+const object1: { [key in string]: string } = {} // most common
+const object2: { [key: string]: string } = {}
+const object3: Record<string, string> = {}
+const object4: { [key in string]: string } = new Object()
+const object5: { [key in string]: string } = Object.create(null) // object without prototype
+
+// pre-filled object
+const object6 = { key1: "value1", key2: "value2" } // most common
+const object7 = Object.fromEntries([["key1", "value1"], ["key2", "value2"]])
 ```
 
 ```swift
 // use a dictionary when keys are dynamic
+// in Swift order of insertion is guaranteed with dictionaries
+
+//   empty dictionary
+let dictionary1: [String: String] = []
+let dictionary2 = Dictionary<String, String>()
+let dictionary3: Dictionary<String, String> = init()
+
+//   pre-filled dictionary
 let dictionary1: [String: String] = ["key1": "value1", "key2": "value2"]
 let dictionary2 = Dictionary<String, String>()
 let dictionary3: Dictionary<String, String> = init()

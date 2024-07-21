@@ -3,18 +3,38 @@
 ## Instantiation
 
 ```ts
-const array1 = [1, 2, 3]
-const array2 = new Array(1, 2, 3)
-const array3 = new Array(3).fill(0).map((i) => (i + 1))
-const array4 = Array.of(1, 2, 3)
-const array5 = Array.from([1, 2, 3])
+// empty array
+const array1: number[] = [] // most common
+const array2 = new Array<number>()
+const array3: Array<number> = []
+const array4: Array<number> = new Array()
+
+// pre-filled array
+const array5 = [1, 2, 3] // most common
+const array6 = new Array(1, 2, 3)
+const array7 = Array.of(1, 2, 3)
+const array8 = Array.from([1, 2, 3])
+
+// shorthand to quickly create and populate a big array
+const bigArray = new Array(10_000).fill(0).map((i) => (i + 1))
 ```
 
 ```swift
-let array1 = [1, 2, 3]
-let array2 = Array(repeating: 0, count: 3).map { $0 + 1 }
-let array3 = Array(1...3)
-let array4 = Array([1, 2, 3])
+// empty array
+let array1: [Int] = [] // most common
+let array2 = [Int]() // most common
+let array3: Array<Int> = []
+let array4 = Array<Int>()
+let array5: [Int] = .init()
+let array6: Array<Int> = .init()
+
+// pre-filled array
+let array7 = [1, 2, 3] // most common
+let array8 = Array(1...3)
+let array9 = Array([1, 2, 3])
+
+// shorthand to quickly create and populate a big array
+let bigArray = Array(repeating: 0, count: 3).enumerated().map { (i, _) in i + 1 }
 ```
 
 ## .at
@@ -31,20 +51,28 @@ const item = array.at(index)
 let i = index >= 0 ? index : array.count + index
 // out of range returns nil, otherwise access by index
 let item = (i >= 0, i < array.count) ? nil : array[i]
+
+// Shorthand with `import JustSugar` *
+let index = array.at(index)
 ```
+
+<sub class="text-right">* see JustSugar [Array.at(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/array/at(_:))</sub>
 
 ## .concat
 
 ```ts
 // concat to create a new array
 let newArray = array1.concat(array2)
+
+// mutate array in place
+array1.push(...array2)
 ```
 
 ```swift
-// concat to create a new array
+// addition to create a new array
 let newArray = array1 + array2
 
-// also see: concat in place
+// mutate array in place
 array1.append(contentsOf: array2)
 ```
 
@@ -84,7 +112,12 @@ array.fill(value, start, end)
 for i in 0..<array.count {
     array[i] = value
 }
+
+// Shorthand with `import JustSugar` *
+array.fill(value)
 ```
+
+<sub class="text-right">* see JustSugar [String.fill(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/array/fill(_:))</sub>
 
 ## .filter
 
@@ -216,7 +249,12 @@ const joinedString = array.join(separator)
 ```swift
 // join elements into a string with a separator
 let joinedString = array.joined(separator: separator)
+
+// Shorthand with `import JustSugar` *
+let joinedString = array.join(separator)
 ```
+
+<sub class="text-right">* see JustSugar [String.join(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/array/join(_:))</sub>
 
 ## .lastIndexOf
 
@@ -269,25 +307,31 @@ let lastItem = array.popLast()
 ## .push
 
 ```ts
-// add elements to the end
+// add an element to the end
 array.push(value)
+
+// add multiple elements to the end
+array.push(...array2)
 ```
 
 ```swift
-// add elements to the end
+// add an element to the end
 array.append(value)
+
+// add multiple elements to the end
+array.append(contentsOf: array2)
 ```
 
 ## .reduce
 
 ```ts
 // reduce array to a single value
-const sum = array.reduce((acc, item) => acc + item, 0)
+const sum = array.reduce((total, item) => total + item, 0)
 ```
 
 ```swift
 // reduce array to a single value
-let sum = array.reduce(0) { acc, item in acc + item }
+let sum = array.reduce(0) { total, item in total + item }
 ```
 
 ## .reverse
@@ -318,13 +362,18 @@ let firstItem = array.removeFirst()
 
 ```ts
 // return a shallow copy of a portion of an array
-const subArray = array.slice(start, end)
+const arraySlice = array.slice(start, end)
 ```
 
 ```swift
 // return a shallow copy of a portion of an array
-let subArray = Array(array[start..<end])
+let arraySlice = Array(array[start..<end])
+
+// Shorthand with `import JustSugar` * (handles negative indexes & prevents out of range errors)
+let arraySlice = array.slice(start, end)
 ```
+
+<sub class="text-right">* see JustSugar [String.slice(_:_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/array/slice(_:_:))</sub>
 
 ## .some
 
