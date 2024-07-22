@@ -6,10 +6,28 @@
 }
 .language-ts, .language-swift {
 	display: inline-flex;
-	width: calc(50% - 8px);
 }
 .language-ts {
+	margin-left: -24px !important;
 	margin-right: 8px !important;
+	width: calc(50% - 4px + 24px);
+}
+.language-swift {
+	margin-right: -24px !important;
+	margin-left: 0px !important;
+	width: calc(50% - 4px + 24px);
+}
+@media (min-width: 769px) {
+	.language-ts {
+		margin-left: 0px !important;
+		margin-right: 16px !important;
+		width: calc(50% - 8px);
+	}
+	.language-swift {
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width: calc(50% - 8px);
+	}
 }
 .text-right {
 	text-align: right;
