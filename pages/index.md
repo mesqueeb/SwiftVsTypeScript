@@ -14,9 +14,9 @@ hero:
     - theme: brand
       text: See CheatSheet
       link: /arrays
-    # - theme: alt
-    #   text: API Examples
-    #   link: /api-examples
+    - theme: alt
+      text: Swift Helper Library
+      link: /justSugar
 
 # features:
 #   - title: Feature A
@@ -27,4 +27,8 @@ hero:
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
 
-Currently takes a TypeScript first approach, for TS devs looking to learn Swift. PRs welcome to add a Swift first approach for Swift devs looking to learn TS!
+Coming from TypeScript, we still need to rewire what common methods are called in Swift. Eg. Instead of `array.every()` you need to reach for `array.allSatisfy()`.
+
+This CheatSheet is a quick reference from a TypeScript perspective to check what the equivalent methods are in Swift.
+
+<sub class="text-right">(PRs welcome to add a Swift first approach for Swift devs looking to learn TS!)</sub>

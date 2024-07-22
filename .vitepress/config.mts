@@ -25,7 +25,8 @@ export default defineConfig({
     logo: '/logo.png',
     nav: [
       { text: 'Home', link: '/index' },
-      { text: 'CheatSheet', link: '/arrays' }
+      { text: 'CheatSheet', link: '/arrays' },
+      { text: 'JustSugar', link: '/justSugar' }
     ],
     sidebar: [
       {
