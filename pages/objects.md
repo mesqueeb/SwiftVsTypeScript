@@ -18,9 +18,9 @@ const object7 = Object.fromEntries([["key1", "value1"], ["key2", "value2"]])
 ```
 
 ```swift
-// use a dictionary when keys are dynamic
 // in Swift order of insertion is guaranteed with dictionaries
 
+// use a dictionary when keys are dynamic
 //   empty dictionary
 let dictionary1: [String: String] = []
 let dictionary2 = Dictionary<String, String>()
