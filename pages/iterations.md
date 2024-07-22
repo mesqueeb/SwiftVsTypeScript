@@ -1,4 +1,4 @@
-# Array Loops
+# Iterations
 
 ## for ... of
 
@@ -17,18 +17,24 @@ for item in array {
 ## for ... of .entries
 
 ```ts
+// arrays
 for (const [index, item] of array.entries()) {
   console.log(index, item)
 }
+
+// objects
 for (const [key, item] of Object.entries(object)) {
   console.log(key, item)
 }
 ```
 
 ```swift
+// arrays
 for (index, item) in array.enumerated() {
 	print(index, item)
 }
+
+// dictionaries
 for (key, item) in dictionary {
 	print(key, item)
 }
@@ -37,14 +43,20 @@ for (key, item) in dictionary {
 ## .forEach
 
 ```ts
-array.forEach(item => {
-  console.log(item)
+array.forEach((item, index) => {
+  console.log(item, index)
 })
 ```
 
 ```swift
+// without index
 array.forEach { item in
   print(item)
+}
+
+// with index
+array.enumerated().forEach { (index, item) in
+  print(item, index)
 }
 ```
 
@@ -77,5 +89,19 @@ for (const key in object) {
 ```swift
 for key in dictionary.keys {
   print(key, dictionary[key]!)
+}
+```
+
+## classical for loop
+
+```ts
+for (let i = 0; i < array.length; i++) {
+  console.log(array[i])
+}
+```
+
+```swift
+for i in 0 ..< array.count {
+  print(array[i])
 }
 ```

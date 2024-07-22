@@ -36,7 +36,7 @@ export default defineConfig({
           { text: 'Strings', link: '/strings' },
           { text: 'Sets', link: '/sets' },
           { text: 'Maps', link: '/maps' },
-          { text: 'Loops', link: '/loops' },
+          { text: 'Iterations', link: '/iterations' },
           { text: 'Async Await', link: '/asyncAwait' },
         ]
       }
