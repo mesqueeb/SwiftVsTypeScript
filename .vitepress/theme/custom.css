@@ -1,3 +1,6 @@
+.VPHome {
+	margin-bottom: 64px !important;
+}
 .VPDoc.has-aside .content-container {
 	max-width: unset !important;
 }
