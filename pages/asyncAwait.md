@@ -119,8 +119,11 @@ promise
 
 ```ts
 // TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
-const promises = [fetchSomething("a"), fetchSomething("b"), fetchSomething("c")]
-
+const promises = [
+  fetchSomething("a"),
+  fetchSomething("b"),
+  fetchSomething("c")
+]
 try {
   const [value1, value2, value3] = await Promise.all(promises)
 } catch (error) {
@@ -134,6 +137,7 @@ try {
 async let task1 = fetchSomething("a")
 async let task2 = fetchSomething("b")
 async let task3 = fetchSomething("c")
+
 do {
   let (value1, value2, value3) = try await (task1, task2, task3)
 } catch {
