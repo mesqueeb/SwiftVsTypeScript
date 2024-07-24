@@ -149,7 +149,8 @@ do {
 
 ```ts
 // TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
-const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
+const ids = ["a", "b", "c", /* ... */]
+const promises = ids.map(async (id) => await fetchSomething(id))
 try {
   const values = await Promise.all(promises)
 } catch (error) {
@@ -185,8 +186,11 @@ do {
 ### Promise.allSettled — fixed length
 
 ```ts
-const promises = [fetchSomething("a"), fetchSomething("b"), fetchSomething("c")]
-
+const promises = [
+  fetchSomething("a"),
+  fetchSomething("b"),
+  fetchSomething("c")
+]
 // Will wait for all promises to resolve or reject, returns an array of results
 // `Promise.allSettled` never throws
 const results = await Promise.allSettled(promises)
@@ -223,8 +227,12 @@ do {
 ### Promise.allSettled — dynamic length
 
 ```ts
-const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
+const ids = ["a", "b", "c", /* ... */]
+const promises = ids.map(async (id) => await fetchSomething(id))
+
 const results = await Promise.allSettled(promises)
+// ↳ ({ status: 'fulfilled', value: any } | { status: 'rejected', reason: any })[]
+
 const values = results
   .filter((result) => result.status === "fulfilled")
   .map((result) => result.value)
