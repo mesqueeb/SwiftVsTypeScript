@@ -126,14 +126,6 @@ try {
 } catch (error) {
   // first found error
 }
-
-// dynamic length
-const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
-try {
-  const values = await Promise.all(promises)
-} catch (error) {
-  // first found error
-}
 ```
 
 ```swift
