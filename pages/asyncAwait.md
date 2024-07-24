@@ -115,12 +115,10 @@ promise
 
 ## Parallel Promises
 
-### Promise.all
+### Promise.all — fixed length
 
 ```ts
 // TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
-
-// fixed length
 const promises = [fetchSomething("a"), fetchSomething("b"), fetchSomething("c")]
 
 try {
@@ -139,7 +137,7 @@ try {
 ```
 
 ```swift
-// fixed length: use `async let`
+// use `async let`
 // Awaiting a tuple of `async let` will await all executions regardless if they throw or not, later it will throw the first error found
 async let task1 = fetchSomething("a")
 async let task2 = fetchSomething("b")
@@ -149,8 +147,22 @@ do {
 } catch {
   // first found error
 }
+```
 
-// dynamic length: use `withThrowingTaskGroup`
+### Promise.all — dynamic length
+
+```ts
+// TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
+const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
+try {
+  const values = await Promise.all(promises)
+} catch (error) {
+  // first found error
+}
+```
+
+```swift
+// use `withThrowingTaskGroup`
 // Awaiting `withThrowingTaskGroup` will stop execution of all tasks once one task throws, and throw that error
 do {
   let ids = ["a", "b", "c", /* ... */]
@@ -174,10 +186,9 @@ do {
 }
 ```
 
-### Promise.allSettled
+### Promise.allSettled — fixed length
 
 ```ts
-// fixed length
 const promises = [fetchSomething("a"), fetchSomething("b"), fetchSomething("c")]
 
 // Will wait for all promises to resolve or reject, returns an array of results
@@ -189,20 +200,9 @@ const [value1, value2, value3] = results
   .map((result) => result.status === "fulfilled" ? result.value : undefined)
 const [error1, error2, error3] = results
   .map((result) => result.status === "rejected" ? result.reason : undefined)
-
-// dynamic length
-const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
-const results = await Promise.allSettled(promises)
-const values = results
-  .filter((result) => result.status === "fulfilled")
-  .map((result) => result.value)
-const errors = results
-  .filter((result) => result.status === "rejected")
-  .map((result) => result.reason)
 ```
 
 ```swift
-// fixed length
 async let task1 = fetchSomething("a")
 async let task2 = fetchSomething("b")
 async let task3 = fetchSomething("c")
@@ -222,8 +222,23 @@ do {
 } catch {
   let error3 = error
 }
+```
 
-// dynamic length: use `withTaskGroup`
+### Promise.allSettled — dynamic length
+
+```ts
+const promises = ["a", "b", "c", /* ... */].map(async (id) => await fetchSomething(id))
+const results = await Promise.allSettled(promises)
+const values = results
+  .filter((result) => result.status === "fulfilled")
+  .map((result) => result.value)
+const errors = results
+  .filter((result) => result.status === "rejected")
+  .map((result) => result.reason)
+```
+
+```swift
+// use `withTaskGroup`
 // Awaiting `withTaskGroup` will await all executions and not expect any of them to throw
 let ids = ["a", "b", "c", /* ... */]
 let results = await withTaskGroup(
