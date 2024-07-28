@@ -103,21 +103,20 @@ let allTrue = array.allSatisfy { item in item > 0 }
 ## .fill
 
 ```ts
-// fill with a value from start to end index
+// fill an entire array with a value
+array.fill(value)
+
+// fill an array from start to end index with a value
 array.fill(value, start, end)
 ```
 
 ```swift
-// fill with a value from start to end index
-for i in 0..<array.count {
-    array[i] = value
-}
+// fill an entire array with a value
+array.replaceSubrange(..., with: repeatElement(value, count: array.count))
 
-// Shorthand with `import JustSugar` *
-array.fill(value)
+// fill an array from start to end index with a value
+array.replaceSubrange(start..<end, with: repeatElement(value, count: end - start))
 ```
-
-<sub class="text-right">* see JustSugar [String.fill(_:\)](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/array/fill(_:))</sub>
 
 ## .filter
 
