@@ -30,11 +30,13 @@ let array6: Array<Int> = .init()
 
 // pre-filled array
 let array7 = [1, 2, 3] // most common
-let array8 = Array(1...3)
-let array9 = Array([1, 2, 3])
+let array8: [Int] = [1, 2, 3]
 
 // shorthand to quickly create and populate a big array
-let bigArray = Array(repeating: 0, count: 3).enumerated().map { (i, _) in i + 1 }
+let bigArray = Array(1...10_000)
+let bigArray2 = Array(repeating: 0, count: 10_000)
+  .enumerated()
+	.map { (i, _) in i + 1 }
 ```
 
 ## .at
