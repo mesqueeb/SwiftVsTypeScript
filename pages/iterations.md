@@ -82,15 +82,17 @@ while i < 3 {
 
 ```ts
 for (const key in object) {
-  console.log(key, object[key])
+  console.log(key)
 }
 ```
 
 ```swift
 for key in dictionary.keys {
-  print(key, dictionary[key]!)
+  print(key)
 }
 ```
+
+See [Objects ▶ Iterating](/objects.html#iterating-over-keys-values-entries) for more examples when woring with objects/dictionaries.
 
 ## classical for loop
 

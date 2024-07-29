@@ -46,6 +46,8 @@ let tuple1 = (key1: "value1", key2: "value2")
 
 ## keys, values, entries
 
+### Converting keys, values, entries to arrays
+
 ```ts
 const keys = Object.keys(object)
 // ["key1", "key2"]
@@ -66,4 +68,34 @@ let values = Array(dictionary.values)
 
 let entries = Array(dictionary)
 // [("key1", "value1"), ("key2", "value2")]
+```
+
+### Iterating over keys, values, entries
+
+```ts
+for (const key in object) {
+  console.log("key: ", key)
+}
+
+for (const value of Object.values(object)) {
+  console.log("value: ", value)
+}
+
+for (const [key, value] of Object.entries(object)) {
+  console.log("entry: ", [key, value])
+}
+```
+
+```swift
+for key in dictionary.keys {
+  print("key:", key)
+}
+
+for value in dictionary.values {
+  print("value:", value)
+}
+
+for (key, value) in dictionary {
+  print("entry:", (key, value))
+}
 ```
