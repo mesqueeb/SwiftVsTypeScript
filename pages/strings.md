@@ -25,7 +25,7 @@ let character = string.at(index)
 
 ```ts
 // check if string ends with characters
-if (string.endsWith(characters)) // ...
+if (string.endsWith(characters)) { /* */ }
 ```
 
 ```swift
@@ -37,7 +37,7 @@ if string.hasSuffix(characters) { /* */ }
 
 ```ts
 // check if string includes characters
-if (string.includes(characters)) // ...
+if (string.includes(characters)) { /* */ }
 ```
 
 ```swift
@@ -227,7 +227,7 @@ let array = string.split(characters)
 
 ```ts
 // return `true` if string starts with characters
-if (string.startsWith(characters)) // ...
+if (string.startsWith(characters)) { /* */ }
 ```
 
 ```swift
