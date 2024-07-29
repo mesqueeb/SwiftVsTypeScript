@@ -3,7 +3,8 @@
 ## Promise Instantiation
 
 ```ts
-// create a one-off promise
+// create a promise and capture in a variable to await later
+// with `new Promise` you can manually resolve or reject
 const promise = new Promise<string>((resolve, reject) => {
   // resolve the promise
   resolve("resolved value")
@@ -26,7 +27,8 @@ async function asyncFunction2(): Promise<void> {
 ```swift
 enum CustomError: Error { case errorCase }
 
-// create an async let
+// create a continuation and capture in an async let to await later
+// with `withCheckedThrowingContinuation` you can manually return or throw
 async let value = withCheckedThrowingContinuation { continuation in
   // resume the continuation and return
   continuation.resume(returning: "resolved value")
@@ -65,6 +67,7 @@ value // the resolved value
 
 // OR create a Task
 // a `Task` instance is similar to a TS `Promise` instance
+// you can do multiple async operations within the `Task` body
 let task = Task { await fetchSomething() }
 // ...
 let value = await task.value
@@ -95,7 +98,7 @@ try {
 ```swift
 do {
   let value = try await somethingAsync()
-  // handle resolved value
+  // handle returned value
 } catch {
   // handle error
 }
@@ -118,7 +121,7 @@ promise
 ### Promise.all — fixed length
 
 ```ts
-// TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
+// `Promise.all` will stop execution of all promises once one fails, rejects with the first error
 const promises = [
   fetchSomething("a"),
   fetchSomething("b"),
@@ -132,8 +135,7 @@ try {
 ```
 
 ```swift
-// use `async let`
-// Awaiting a tuple of `async let` will await all executions regardless if they throw or not, later it will throw the first error found
+// a tuple of `async let` will await all executions regardless if they throw or not, later it will throw the first error found
 async let task1 = fetchSomething("a")
 async let task2 = fetchSomething("b")
 async let task3 = fetchSomething("c")
@@ -148,7 +150,7 @@ do {
 ### Promise.all — dynamic length
 
 ```ts
-// TS's `Promise.all` will stop execution of all promises once one fails, rejects with the first error
+// `Promise.all` will stop execution of all promises once one fails, rejects with the first error
 const ids = ["a", "b", "c", /* ... */]
 const promises = ids.map(async (id) => await fetchSomething(id))
 try {
@@ -159,8 +161,7 @@ try {
 ```
 
 ```swift
-// use `withThrowingTaskGroup`
-// Awaiting `withThrowingTaskGroup` will stop execution of all tasks once one task throws, and throw that error
+// `withThrowingTaskGroup` will stop execution of all tasks once one task throws, and throw that error
 do {
   let ids = ["a", "b", "c", /* ... */]
   let values = try await withThrowingTaskGroup(
@@ -186,6 +187,8 @@ do {
 ### Promise.allSettled — fixed length
 
 ```ts
+// `Promise.allSettled` will await all executions and never throws. It returns an array of results with status
+// make an array with a couple of promises you can await in parallel with `Promise.allSettled`
 const promises = [
   fetchSomething("a"),
   fetchSomething("b"),
@@ -193,40 +196,42 @@ const promises = [
 ]
 // Will wait for all promises to resolve or reject, returns an array of results
 // `Promise.allSettled` never throws
-const results = await Promise.allSettled(promises)
+const results = await Promise.allSettled<string>(promises)
 // ↳ ({ status: 'fulfilled', value: any } | { status: 'rejected', reason: any })[]
 
-const [value1, value2, value3] = results
-  .map((result) => result.status === "fulfilled" ? result.value : undefined)
-const [error1, error2, error3] = results
-  .map((result) => result.status === "rejected" ? result.reason : undefined)
+// filter just the values
+const values: string[] = results
+  .filter((result) => result.status === "fulfilled")
+  .map((result) => result.value)
+// filter just the errors
+const errors: unknown[] = results
+  .filter((result) => result.status === "rejected")
+  .map((result) => result.reason)
 ```
 
 ```swift
-async let task1 = fetchSomething("a")
-async let task2 = fetchSomething("b")
-async let task3 = fetchSomething("c")
-// all three tasks below are awaited in parallel
-do {
-  let value1 = try await task1
-} catch {
-  let error1 = error
-}
-do {
-  let value2 = try await task2
-} catch {
-  let error2 = error
-}
-do {
-  let value3 = try await task3
-} catch {
-  let error3 = error
-}
+// capture several `async let` to await in parallel later
+async let futureValue1 = fetchSomething("a")
+async let futureValue2 = fetchSomething("b")
+async let futureValue3 = fetchSomething("c")
+
+// filter just the values
+let values: String[] = []
+// filter just the errors
+let errors: Any[] = []
+
+// all three futureValues below are awaited in parallel
+do { values.append(try await futureValue1) } catch { errors.append(error) }
+do { values.append(try await futureValue2) } catch { errors.append(error) }
+do { values.append(try await futureValue3) } catch { errors.append(error) }
+
+// also see `withTaskGroup` and `withThrowingTaskGroup` in the other examples
 ```
 
 ### Promise.allSettled — dynamic length
 
 ```ts
+// `Promise.allSettled` will await all executions and never throws. It returns an array of results with status
 const ids = ["a", "b", "c", /* ... */]
 const promises = ids.map(async (id) => await fetchSomething(id))
 
@@ -242,8 +247,7 @@ const errors = results
 ```
 
 ```swift
-// use `withTaskGroup`
-// Awaiting `withTaskGroup` will await all executions and not expect any of them to throw
+// `withTaskGroup` will await all executions and not expect any of them to throw
 let ids = ["a", "b", "c", /* ... */]
 let results = await withTaskGroup(
   // the type of whatever you return in `addTask`
