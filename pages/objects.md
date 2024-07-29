@@ -47,13 +47,23 @@ let tuple1 = (key1: "value1", key2: "value2")
 ## keys, values, entries
 
 ```ts
-const keys = Object.keys(object) // ["key1", "key2"]
-const values = Object.values(object) // ["value1", "value2"]
-const entries = Object.entries(object) // [["key1", "value1"], ["key2", "value2"]]
+const keys = Object.keys(object)
+// ["key1", "key2"]
+
+const values = Object.values(object)
+// ["value1", "value2"]
+
+const entries = Object.entries(object)
+// [["key1", "value1"], ["key2", "value2"]]
 ```
 
 ```swift
-let keys = Array(dictionary.keys) // ["key1", "key2"]
-let values = Array(dictionary.values) // ["value1", "value2"]
-let entries = Array(dictionary) // [("key1", "value1"), ("key2", "value2")]
+let keys = Array(dictionary.keys)
+// ["key1", "key2"]
+
+let values = Array(dictionary.values)
+// ["value1", "value2"]
+
+let entries = Array(dictionary)
+// [("key1", "value1"), ("key2", "value2")]
 ```
