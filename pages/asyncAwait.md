@@ -3,10 +3,10 @@
 ## Promise Instantiation
 
 ```ts
-// create a one-off taskpromise
-const taskpromise = new taskPromise<string>((resolve, reject) => {
-  // taskesolve the taskmise
-  resotaskresolved value")
+// create a one-off promise
+const promise = new Promise<string>((resolve, reject) => {
+  // resolve the promise
+  resolve("resolved value")
   // OR
   // reject the promise
   reject("error message")
