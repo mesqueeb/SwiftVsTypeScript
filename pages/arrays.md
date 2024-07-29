@@ -95,10 +95,12 @@ for (index, item) in array.enumerated() {
 ## .every
 
 ```ts
+// return `true` if all elements match a condition
 const allTrue = array.every((item) => item > 0)
 ```
 
 ```swift
+// return `true` if all elements match a condition
 let allTrue = array.allSatisfy { item in item > 0 }
 ```
 
@@ -379,12 +381,12 @@ let arraySlice = array.slice(start, end)
 ## .some
 
 ```ts
-// check if at least one element matches a condition
+// return `true` if at least one element matches a condition
 const hasPositive = array.some((item) => item > 0)
 ```
 
 ```swift
-// check if at least one element matches a condition
+// return `true` if at least one element matches a condition
 let hasPositive = array.contains { item in item > 0 }
 ```
 
