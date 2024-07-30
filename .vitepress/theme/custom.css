@@ -34,16 +34,6 @@
 		width: calc(100%);
 	}
 }
-/* .language-ts {
-	margin-left: -24px !important;
-	margin-right: 8px !important;
-	width: calc(50% - 4px + 24px);
-}
-.language-swift {
-	margin-right: -24px !important;
-	margin-left: 0px !important;
-	width: calc(50% - 4px + 24px);
-} */
 @media (min-width: 769px) {
 	.language-ts {
 		margin-left: 0px !important;
