@@ -7,7 +7,34 @@
 .language-ts, .language-swift {
 	display: inline-flex;
 }
-.language-ts {
+@media (max-width: 768px) {
+	.language-ts, .language-swift {
+		margin-left: -24px !important;
+		margin-right: -24px !important;
+		width: calc(100% + 24px + 24px);
+		padding-top: 1.5rem;
+	}
+	.language-ts .lang, .language-swift .lang {
+		font-size: 1rem !important;
+		font-weight: bold !important;
+		padding-top: 0.5em;
+		left: 1.5rem !important;
+	}
+	.language-ts .lang {
+		text-transform: uppercase;
+	}
+	.language-swift .lang {
+		text-transform: capitalize;
+	}
+}
+@media (min-width: 640px) {
+	.language-ts, .language-swift {
+		margin-left: 0px !important;
+		margin-right: 0px !important;
+		width: calc(100%);
+	}
+}
+/* .language-ts {
 	margin-left: -24px !important;
 	margin-right: 8px !important;
 	width: calc(50% - 4px + 24px);
@@ -16,7 +43,7 @@
 	margin-right: -24px !important;
 	margin-left: 0px !important;
 	width: calc(50% - 4px + 24px);
-}
+} */
 @media (min-width: 769px) {
 	.language-ts {
 		margin-left: 0px !important;
