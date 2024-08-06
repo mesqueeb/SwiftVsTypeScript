@@ -29,7 +29,7 @@ enum CustomError: Error { case errorCase }
 
 // create a continuation and capture in an async let to await later
 // with `withCheckedThrowingContinuation` you can manually return or throw
-async let value = withCheckedThrowingContinuation { continuation in
+async let fetching = withCheckedThrowingContinuation { continuation in
   // resume the continuation and return
   continuation.resume(returning: "resolved value")
   // OR
@@ -55,23 +55,22 @@ func asyncFunction2() async {
 ```ts
 const promise = fetchSomething()
 // ...
-const value = await promise
-value // the resolved value
+const value = await promise // the resolved value
 ```
 
 ```swift
-async let value = fetchSomething()
+// an `async let` instance is similar to a TS `Promise` instance
+// it's used for capturing a single async operation to await later
+async let fetching = fetchSomething()
 // ...
-await value
-value // the resolved value
+let value = await fetching // the resolved value
 
 // OR create a Task
 // a `Task` instance is similar to a TS `Promise` instance
 // you can do multiple async operations within the `Task` body
 let task = Task { await fetchSomething() }
 // ...
-let value = await task.value
-value // the resolved value
+let value = await task.value // the resolved value
 ```
 
 ### await timeout
@@ -81,7 +80,7 @@ await new Promise<void>((resolve) => setTimeout(resolve, 1_000))
 ```
 
 ```swift
-try await Task.sleep(for: .milliseconds(1_000))
+try? await Task.sleep(for: .milliseconds(1_000))
 ```
 
 ### try / catch
@@ -211,19 +210,19 @@ const errors: unknown[] = results
 
 ```swift
 // capture several `async let` to await in parallel later
-async let futureValue1 = fetchSomething("a")
-async let futureValue2 = fetchSomething("b")
-async let futureValue3 = fetchSomething("c")
+async let fetching1 = fetchSomething("a")
+async let fetching2 = fetchSomething("b")
+async let fetching3 = fetchSomething("c")
 
 // filter just the values
 let values: String[] = []
 // filter just the errors
 let errors: Any[] = []
 
-// all three futureValues below are awaited in parallel
-do { values.append(try await futureValue1) } catch { errors.append(error) }
-do { values.append(try await futureValue2) } catch { errors.append(error) }
-do { values.append(try await futureValue3) } catch { errors.append(error) }
+// all three async let below are awaited in parallel
+do { values.append(try await fetching1) } catch { errors.append(error) }
+do { values.append(try await fetching2) } catch { errors.append(error) }
+do { values.append(try await fetching3) } catch { errors.append(error) }
 
 // also see `withTaskGroup` and `withThrowingTaskGroup` in the other examples
 ```
