@@ -42,9 +42,11 @@ export default defineConfig({
           { text: 'Maps', link: '/maps' },
           { text: 'Iterations', link: '/iterations' },
           { text: 'Async Await', link: '/asyncAwait' },
+          { text: 'Math', link: '/math' },
         ]
       }
     ],
+    // aside: 'left',
     socialLinks: [
       { icon: 'github', link: 'https://github.com/mesqueeb' }
     ],
