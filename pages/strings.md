@@ -286,7 +286,7 @@ const trimmed = string.trimEnd()
 ```swift
 // remove whitespace from the end of a string
 if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted, options: .backwards) {
-	let trimmed = String(string[..<range.upperBound])
+	let trimmed = String(string[..< range.upperBound])
 }
 
 // Shorthand with `import JustSugar` *

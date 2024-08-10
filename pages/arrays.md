@@ -119,7 +119,7 @@ array.fill(value, start, end)
 array.replaceSubrange(..., with: repeatElement(value, count: array.count))
 
 // fill an array from start to end index with a value
-array.replaceSubrange(start..<end, with: repeatElement(value, count: end - start))
+array.replaceSubrange(start ..< end, with: repeatElement(value, count: end - start))
 ```
 
 ## .filter
@@ -370,7 +370,7 @@ const arraySlice = array.slice(start, end)
 
 ```swift
 // return a shallow copy of a portion of an array
-let arraySlice = Array(array[start..<end])
+let arraySlice = Array(array[start ..< end])
 
 // Shorthand with `import JustSugar` * (handles negative indexes & prevents out of range errors)
 let arraySlice = array.slice(start, end)
@@ -410,9 +410,10 @@ const removedItems = array.splice(start, deleteCount, item1, item2)
 ```
 
 ```swift
+// if you need the removed items, copy them first
+let removedItems = array[start ..< start + deleteCount]
 // add/remove elements in place
-let removedItems = array[start..<start+deleteCount]
-array.removeSubrange(start..<start+deleteCount)
+array.removeSubrange(start ..< start + deleteCount)
 array.insert(contentsOf: [item1, item2], at: start)
 ```
 
@@ -450,7 +451,7 @@ const newArray = array.toSpliced(start, deleteCount, item1, item2)
 ```swift
 // return a new array with elements added/removed
 var newArray = array
-newArray.removeSubrange(start..<start+deleteCount)
+newArray.removeSubrange(start ..< start + deleteCount)
 newArray.insert(contentsOf: [item1, item2], at: start)
 ```
 

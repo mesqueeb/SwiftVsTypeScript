@@ -1,9 +1,39 @@
 # Math
 
+### Min / Max
+
 ```ts
-100 * 1.1 // 110.00000000000001
+Math.min(...[1, 2, 3]) // 1
+Math.max(...[1, 2, 3]) // 3
 Math.min(1, 2, 3) // 1
 Math.max(1, 2, 3) // 3
+```
+
+```swift
+[1, 2, 3].min() // 1
+[1, 2, 3].max() // 3
+min(1, 2, 3) // 1
+max(1, 2, 3) // 3
+```
+
+### Floating point arithmetic
+
+Both languages need care with floating point arithmetic:
+
+```ts
+// be careful with floating point arithmetic
+100 * 1.1 // 110.00000000000001
+Math.floor(100 * 1.1) // 110
+```
+
+```swift
+100 * 1.1 // 110.00000000000001
+floor(100 * 1.1) // 110
+```
+
+### Others
+
+```ts
 Math.random() // 0.123...
 Math.floor(1.5) // 1
 Math.ceil(1.5) // 2
@@ -28,9 +58,6 @@ Math.cbrt(27) // 3
 ```
 
 ```swift
-100 * 1.1 // 110.00000000000001
-min(1, 2, 3) // 1
-max(1, 2, 3) // 3
 Double.random(in: 0...1) // 0.123...
 floor(1.5) // 1
 ceil(1.5) // 2
