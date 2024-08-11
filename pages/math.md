@@ -1,6 +1,6 @@
 # Math
 
-### Min / Max
+## Min / Max
 
 ```ts
 Math.min(...[1, 2, 3]) // 1
@@ -16,7 +16,7 @@ min(1, 2, 3) // 1
 max(1, 2, 3) // 3
 ```
 
-### Floating point arithmetic
+## Floating point arithmetic
 
 Both languages need care with floating point arithmetic:
 
@@ -31,7 +31,7 @@ Math.floor(100 * 1.1) // 110
 floor(100 * 1.1) // 110
 ```
 
-### Others
+## Others
 
 ```ts
 Math.random() // 0.123...
