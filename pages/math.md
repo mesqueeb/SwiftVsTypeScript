@@ -21,7 +21,6 @@ max(1, 2, 3) // 3
 Both languages need care with floating point arithmetic:
 
 ```ts
-// be careful with floating point arithmetic
 100 * 1.1 // 110.00000000000001
 Math.floor(100 * 1.1) // 110
 ```
