@@ -290,7 +290,7 @@ if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted, o
 }
 
 // Shorthand with `import JustSugar` *
-let trimmed = string.trimStart()
+let trimmed = string.trimEnd()
 ```
 
 <sub class="text-right">* see JustSugar [String.trimEnd()](https://swiftpackageindex.com/mesqueeb/justsugar/documentation/justsugar/swift/string/trimEnd())</sub>
