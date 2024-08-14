@@ -328,13 +328,24 @@ array.append(contentsOf: array2)
 ## .reduce
 
 ```ts
-// reduce array to a single value
-const sum = array.reduce((total, item) => total + item, 0)
+// reduce an array to a number
+const sum = array.reduce((total, x) => total + x, 0)
+
+// reduce an array to an object
+const wordLengths = words.reduce<{ [key in string]: number }>((result, word) => {
+	result[word] = word.length
+	return result
+}, {})
 ```
 
 ```swift
-// reduce array to a single value
-let sum = array.reduce(0) { total, item in total + item }
+// reduce an array to a number
+let sum = array.reduce(0) { total, x in total + x }
+
+// reduce an array to a dictionary
+let wordLengths = words.reduce(into: [String: Int]()) { result, word in
+  result[word] = word.count
+}
 ```
 
 ## .reverse
