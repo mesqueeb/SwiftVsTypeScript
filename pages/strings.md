@@ -166,11 +166,17 @@ let newString = String(repeating: string, count: count)
 ```ts
 // replace first occurrence of characters with replacement
 const newString = string.replace(characters, replacement)
+
+// or some regex
+const newString = string.replace(/regex/, replacement)
 ```
 
 ```swift
 // replace first occurrence of characters with replacement
 let newString = string.replacing(characters, with: replacement, maxReplacements: 1)
+
+// or some regex
+let newString = string.replacing(/regex/, with: replacement, maxReplacements: 1)
 ```
 
 ## .replaceAll
@@ -178,11 +184,17 @@ let newString = string.replacing(characters, with: replacement, maxReplacements:
 ```ts
 // replace all occurrences of characters with replacement
 const newString = string.replaceAll(characters, replacement)
+
+// or some regex
+const newString = string.replaceAll(/regex/g, replacement)
 ```
 
 ```swift
 // replace all occurrences of characters with replacement
 let newString = string.replacing(characters, with: replacement)
+
+// or some regex
+let newString = string.replacing(/regex/, with: replacement)
 ```
 
 ## .slice
