@@ -244,6 +244,11 @@ if (string.startsWith(characters)) { /* */ }
 
 ```swift
 // return `true` if string starts with characters
+if string.starts(with: characters) { /* */ }
+// or with regex
+if string.starts(with: /regex/) { /* */ }
+
+// also can use
 if string.hasPrefix(characters) { /* */ }
 ```
 
