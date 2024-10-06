@@ -42,6 +42,7 @@ export default defineConfig({
           { text: 'Maps', link: '/maps' },
           { text: 'Iterations', link: '/iterations' },
           { text: 'Async Await', link: '/asyncAwait' },
+          { text: 'Spread Operator', link: '/spread' },
           { text: 'Math', link: '/math' },
         ]
       }
