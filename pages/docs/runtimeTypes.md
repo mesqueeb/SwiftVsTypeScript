@@ -6,13 +6,13 @@ In Swift, types play a significant role at both compile time **and runtime**. Ty
 
 Below is a comparison table to highlight how Swift and TypeScript handle types at runtime:
 
-| Concept                                         | Swift                                                                 | TS / JS                                                                                      |
-|-----------------------------------------------------|-----------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| Memory management based on types                    | ✅ Allocates memory based on type information during runtime          | ❌ Memory is managed by JS's dynamic runtime, unrelated to TS types                         |
-| Runtime type casting and checking                  | ✅ Uses `as?`, `as!`, `is` to check and cast types in conditions [¹](#_1-runtime-type-casting-and-checking)      | ⚠️ JS's `instanceof` checks prototype chain, not TS-specific types                               |
-| Runtime Generics        | ✅ Generics are resolved to concrete types, dynamically passed at runtime [²](#_2-runtime-generics) | ❌ Generics are erased during transpilation, not available at runtime                   |
-| Protocol conformance checking                      | ✅ Check if types conform to protocols dynamically using `is` [³](#_3-protocol-conformance-checking)         | ❌ No runtime support for checking interface conformance                                    |
-| Optional types and null safety                     | ✅ Swift enforces runtime safety with `Optional` and `nil` [⁴](#_4-optional-types-and-null-safety)            | ❌ Optional values are a TS compile-time feature, JS handles `null`/`undefined` dynamically |
+| Concept                           | Swift                                                                                                       | TS / JS                                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Memory management based on types  | ✅ Allocates memory based on type information during runtime                                                | ❌ Memory is managed by JS's dynamic runtime, unrelated to TS types                         |
+| Runtime type casting and checking | ✅ Uses `as?`, `as!`, `is` to check and cast types in conditions [¹](#_1-runtime-type-casting-and-checking) | ⚠️ JS's `instanceof` checks prototype chain, not TS-specific types                          |
+| Runtime Generics                  | ✅ Generics are resolved to concrete types, dynamically passed at runtime [²](#_2-runtime-generics)         | ❌ Generics are erased during transpilation, not available at runtime                       |
+| Protocol conformance checking     | ✅ Check if types conform to protocols dynamically using `is` [³](#_3-protocol-conformance-checking)        | ❌ No runtime support for checking interface conformance                                    |
+| Optional types and null safety    | ✅ Swift enforces runtime safety with `Optional` and `nil` [⁴](#_4-optional-types-and-null-safety)          | ❌ Optional values are a TS compile-time feature, JS handles `null`/`undefined` dynamically |
 
 ## 1. Runtime type casting and checking
 
