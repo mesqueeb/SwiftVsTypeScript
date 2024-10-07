@@ -35,17 +35,19 @@
 	}
 }
 @media (min-width: 769px) {
-	.language-ts {
+	.language-ts, .language-swift {
 		margin-left: 0px !important;
-		margin-right: 16px !important;
+		margin-right: 0px !important;
 		width: calc(50% - 8px);
 	}
-	.language-swift {
-		margin-right: 0px !important;
-		margin-left: 0px !important;
-		width: calc(50% - 8px);
+	.language-ts {
+		margin-right: 16px !important;
+	}
+	._SwiftVsTypeScript_docs_runtimeTypes :is(.language-ts, .language-swift) {
+		width: 100%;
 	}
 }
+
 .text-right {
 	text-align: right;
 }
