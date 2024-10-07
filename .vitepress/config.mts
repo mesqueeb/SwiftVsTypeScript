@@ -45,6 +45,12 @@ export default defineConfig({
           { text: 'Spread Operator', link: '/spread' },
           { text: 'Math', link: '/math' },
         ]
+      },
+      {
+        text: 'Documentation',
+        items: [
+          { text: 'Runtime Types', link: '/docs/runtimeTypes' },
+        ]
       }
     ],
     // aside: 'left',
