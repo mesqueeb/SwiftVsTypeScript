@@ -51,9 +51,8 @@ func printer(_ params: Any...) {
   // In Swift you cannot convert an array of parameters back to individual unnamed arguments.
   print("printer", params.joined(separator: " "))
 
-	// you can however pass the array to another function that also works with variadic parameters.
-	// in that case you pass it like so:
-	printer(params...)
+	// you can however pass the array as-is to another function that also works with variadic parameters:
+	printer(params)
 }
 ```
 
