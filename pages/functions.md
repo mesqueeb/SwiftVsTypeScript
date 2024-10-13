@@ -90,7 +90,7 @@ See [Async Await](/asyncAwait.md) for more details on async functions.
 
 Similar to a TS _arrow function_ is the Swift _closure_. This is what's used when passing functions as parameters.
 
-### Types as part of the definition
+### Explicit types (as part of the implementation)
 
 ```ts
 // arrow function with types
@@ -108,10 +108,10 @@ let result = sum(10, 5)
 ```
 
 <sub class="text-right">
-In Swift a closure looks hard to read when the types are defined as part of the closure. It's more common to define the types separately, see the next section "implicit types" to see the difference.
+In Swift a closure is **hard to read** when the types are defined as _part of the closure_. It's more common to define the types separately, see the next section "implicit types" to see the difference.
 </sub>
 
-### Implicit types
+### Implicit types (defined separately)
 
 Here the type signature is defined separately from the implementation. Meaning the implementation has _implicit types_. (in Swift this is more common than explicit types)
 
