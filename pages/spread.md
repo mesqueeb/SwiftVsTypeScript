@@ -73,17 +73,26 @@ print(dict) // ["b": 2, "c": 3]
 
 ```ts
 function logger(...params: any[]) {
+  console.log('logger ', params.join(' - '))
+
   // In TS you can convert the array of parameters back to individual arguments:
-  console.log('logger', ...params)
+  console.log(...params)
 }
+
+logger(1, 2, 3)
+// "logger 1 - 2 - 3"
+// "1 2 3"
 ```
 
 ```swift
 func printer(_ params: Any...) {
-  // In Swift you cannot convert an array of parameters back to individual unnamed arguments.
-  print("printer", params.joined(separator: " "))
+  print("printer", params.map { "\($0)" }.joined(separator: " - "))
 
-  // you can however pass the array as-is to another function that also works with variadic parameters:
-  printer(params)
+  // In Swift you cannot convert an array of parameters back to individual unnamed arguments:
+  print(params)
 }
+
+printer(1, 2, 3)
+// "printer 1 - 2 - 3"
+// "[1, 2, 3]"
 ```
