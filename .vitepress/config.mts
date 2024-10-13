@@ -35,6 +35,7 @@ export default defineConfig({
       {
         text: 'CheatSheet',
         items: [
+          { text: 'Functions', link: '/functions' },
           { text: 'Arrays', link: '/arrays' },
           { text: 'Objects', link: '/objects' },
           { text: 'Strings', link: '/strings' },
