@@ -269,26 +269,26 @@ greet(greeting: "Hi", punctuation: "?") // "Hi Charlie ?"
 
 ```ts
 function logger(...params: any[]) {
-  console.log('logger ', params.join(' - '))
+  console.log(params.join(' - '))
 
   // In TS you can convert the array of parameters back to individual arguments:
-  console.log(...params)
+  console.log('logger ', ...params)
 }
 
 logger(1, 2, 3)
-// "logger 1 - 2 - 3"
-// "1 2 3"
+// "1 - 2 - 3"
+// "logger 1 2 3"
 ```
 
 ```swift
 func printer(_ params: Any...) {
-  print("printer", params.map { "\($0)" }.joined(separator: " - "))
+  print(params.map { "\($0)" }.joined(separator: " - "))
 
   // In Swift you cannot convert an array of parameters back to individual unnamed arguments:
-  print(params)
+  print("printer", params)
 }
 
 printer(1, 2, 3)
-// "printer 1 - 2 - 3"
-// "[1, 2, 3]"
+// "1 - 2 - 3"
+// "printer [1, 2, 3]"
 ```
