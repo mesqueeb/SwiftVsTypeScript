@@ -84,7 +84,7 @@ let result = await fetchData()
 print(result)
 ```
 
-See [asyncAwait](/asyncAwait.md) for more details on async functions.
+See [Async Await](/asyncAwait.md) for more details on async functions.
 
 ## Arrow functions (closures)
 
