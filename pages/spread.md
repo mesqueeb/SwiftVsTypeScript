@@ -88,7 +88,7 @@ logger(1, 2, 3)
 func printer(_ params: Any...) {
   print(params.map { "\($0)" }.joined(separator: " - "))
 
-  // In Swift you cannot convert an array of parameters back to individual unnamed arguments:
+  // In Swift you cannot convert an array of parameters back to individual arguments:
   print("printer", params)
 }
 
