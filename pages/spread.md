@@ -73,10 +73,10 @@ print(dict) // ["b": 2, "c": 3]
 
 ```ts
 function logger(...params: any[]) {
-  console.log(params.join(' - '))
+  console.log(params.join(" - "))
 
   // In TS you can convert the array of parameters back to individual arguments:
-  console.log('logger ', ...params)
+  console.log("logger ", ...params)
 }
 
 logger(1, 2, 3)
