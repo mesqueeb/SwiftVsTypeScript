@@ -31,12 +31,12 @@ for (const [key, item] of Object.entries(object)) {
 ```swift
 // arrays
 for (index, item) in array.enumerated() {
-	print(index, item)
+  print(index, item)
 }
 
 // dictionaries
 for (key, item) in dictionary {
-	print(key, item)
+  print(key, item)
 }
 ```
 

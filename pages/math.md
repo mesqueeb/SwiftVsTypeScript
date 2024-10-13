@@ -3,17 +3,19 @@
 ## Min / Max
 
 ```ts
-Math.min(...[1, 2, 3]) // 1
-Math.max(...[1, 2, 3]) // 3
 Math.min(1, 2, 3) // 1
 Math.max(1, 2, 3) // 3
+
+Math.min(...[1, 2, 3]) // 1
+Math.max(...[1, 2, 3]) // 3
 ```
 
 ```swift
-[1, 2, 3].min() // 1
-[1, 2, 3].max() // 3
 min(1, 2, 3) // 1
 max(1, 2, 3) // 3
+
+[1, 2, 3].min() // 1
+[1, 2, 3].max() // 3
 ```
 
 ## Floating point arithmetic

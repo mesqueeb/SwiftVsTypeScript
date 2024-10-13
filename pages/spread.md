@@ -1,6 +1,25 @@
 # Spread Operator
 
-## Spread merging objects
+
+## Merging arrays
+
+```ts
+const arr1 = [1, 2]
+const arr2 = [3, 4]
+
+const merged = [...arr1, ...arr2]
+// [1, 2, 3, 4]
+```
+
+```swift
+let arr1 = [1, 2]
+let arr2 = [3, 4]
+
+let merged = arr1 + arr2
+// [1, 2, 3, 4]
+```
+
+## Merging objects
 
 ```ts
 const obj1 = { a: 1, b: 2 }
@@ -19,44 +38,7 @@ let merged = dict1.merging(dict2) { (_, new) in new }
 // ["a": 1, "b": 3, "c": 4]
 ```
 
-## Spread in array
-
-```ts
-const arr1 = [1, 2]
-const arr2 = [3, 4]
-
-const merged = [...arr1, ...arr2]
-// [1, 2, 3, 4]
-```
-
-```swift
-let arr1 = [1, 2]
-let arr2 = [3, 4]
-
-let merged = arr1 + arr2
-// [1, 2, 3, 4]
-```
-
-## Spread as function argument (variadic parameters)
-
-```ts
-function logger(...params: any[]) {
-  // In TS you can convert the array of parameters back to individual arguments:
-	console.log('logger', ...params)
-}
-```
-
-```swift
-func printer(_ params: Any...) {
-  // In Swift you cannot convert an array of parameters back to individual unnamed arguments.
-  print("printer", params.joined(separator: " "))
-
-	// you can however pass the array as-is to another function that also works with variadic parameters:
-	printer(params)
-}
-```
-
-## Spread in array destructuring
+## Destructuring arrays
 
 ```ts
 const [first, ...rest] = [1, 2, 3, 4]
@@ -72,7 +54,7 @@ let first = array.first! // 1
 let rest = Array(array.dropFirst()) // [2, 3, 4]
 ```
 
-## Spread in object destructuring
+## Destructuring objects
 
 ```ts
 const { a, ...rest } = { a: 1, b: 2, c: 3 }
@@ -85,4 +67,23 @@ console.log(rest) // { b: 2, c: 3 }
 var dict = ["a": 1, "b": 2, "c": 3]
 let a = dict.removeValue(forKey: "a")
 print(dict) // ["b": 2, "c": 3]
+```
+
+## Rest parameters (variadic parameters)
+
+```ts
+function logger(...params: any[]) {
+  // In TS you can convert the array of parameters back to individual arguments:
+  console.log('logger', ...params)
+}
+```
+
+```swift
+func printer(_ params: Any...) {
+  // In Swift you cannot convert an array of parameters back to individual unnamed arguments.
+  print("printer", params.joined(separator: " "))
+
+  // you can however pass the array as-is to another function that also works with variadic parameters:
+  printer(params)
+}
 ```

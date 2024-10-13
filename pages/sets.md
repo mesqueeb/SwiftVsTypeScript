@@ -44,7 +44,7 @@ const size = set.size
 
 // loop
 for (const value of set) {
-	// ...
+  // ...
 }
 ```
 

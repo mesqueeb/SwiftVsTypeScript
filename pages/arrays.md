@@ -36,7 +36,7 @@ let array8: [Int] = [1, 2, 3]
 let bigArray = Array(1...10_000)
 let bigArray2 = Array(repeating: 0, count: 10_000)
   .enumerated()
-	.map { (i, _) in i + 1 }
+  .map { (i, _) in i + 1 }
 ```
 
 ## .at
@@ -82,7 +82,7 @@ array1.append(contentsOf: array2)
 
 ```ts
 for (const [index, item] of array.entries()) {
-	console.log(index, item)
+  console.log(index, item)
 }
 ```
 
@@ -333,8 +333,8 @@ const sum = array.reduce((total, x) => total + x, 0)
 
 // reduce an array to an object
 const wordLengths = words.reduce<{ [key in string]: number }>((result, word) => {
-	result[word] = word.length
-	return result
+  result[word] = word.length
+  return result
 }, {})
 ```
 

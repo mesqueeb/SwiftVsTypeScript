@@ -101,7 +101,7 @@ let regex = /t(e)(st(\d?))/
 let string = "test1test2"
 
 for match of string.matches(of: regex) {
-		print("Found: \(match[0]), groups: [\(match[1]), \(match[2]), \(match[3])] start: \(match.range.lowerBound.utf16Offset(in: string))")
+    print("Found: \(match[0]), groups: [\(match[1]), \(match[2]), \(match[3])] start: \(match.range.lowerBound.utf16Offset(in: string))")
 }
 // Found: test1, groups: [e, st1, 1] start: 0
 // Found: test2, groups: [e, st2, 2] start: 5
@@ -303,7 +303,7 @@ const trimmed = string.trimEnd()
 ```swift
 // remove whitespace from the end of a string
 if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted, options: .backwards) {
-	let trimmed = String(string[..< range.upperBound])
+  let trimmed = String(string[..< range.upperBound])
 }
 
 // Shorthand with `import JustSugar` *
@@ -322,7 +322,7 @@ const trimmed = string.trimStart()
 ```swift
 // remove whitespace from the start of a string
 if let range = string.rangeOfCharacter(from: .whitespacesAndNewlines.inverted) {
-	let trimmed = String(string[range.lowerBound...])
+  let trimmed = String(string[range.lowerBound...])
 }
 
 // Shorthand with `import JustSugar` *
