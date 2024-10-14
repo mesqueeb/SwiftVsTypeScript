@@ -92,7 +92,7 @@ for key in dictionary.keys {
 }
 ```
 
-See [Objects ▶ Iterating](/objects.html#iterating-over-keys-values-entries) for more examples when woring with objects/dictionaries.
+See [Objects ▶ Iterating](/objects.html#iterating-over-keys-values-entries) for more examples when working with objects/dictionaries.
 
 ## classical for loop
 
