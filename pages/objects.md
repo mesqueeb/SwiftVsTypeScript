@@ -15,6 +15,20 @@ const obj5: { [key in string]: string } = Object.create(null) // object without 
 // pre-filled object
 const obj6 = { key1: "value1", key2: "value2" } // most common
 const obj7 = Object.fromEntries([["key1", "value1"], ["key2", "value2"]])
+
+// using a separate interface
+interface MyInterface {
+  key1: string
+  key2: string
+}
+const obj8: MyInterface = { key1: "value1", key2: "value2" }
+
+// using a separate type
+type MyType = {
+  key1: string
+  key2: string
+}
+const obj9: MyType = { key1: "value1", key2: "value2" }
 ```
 
 ```swift
@@ -33,13 +47,40 @@ let dict6 = Dictionary(uniqueKeysWithValues: zip(["key1", "key2"], ["value1", "v
 
 // use a struct when keys are static
 struct MyStruct {
-    let key1: String
-    let key2: String
+  let key1: String
+  let key2: String
 }
 let struct1 = MyStruct(key1: "value1", key2: "value2")
 
-// use a tuple when keys are static, useful as quick inline objects
+// use a named tuple when keys are static, useful as quick inline objects
 let tuple1 = (key1: "value1", key2: "value2")
+```
+
+## Accessing properties
+
+```ts
+const obj = { key1: "value1", key2: "value2" }
+obj.key1 // "value1"
+obj["key1"] // "value1"
+```
+
+```swift
+// dictionaries
+let dict = ["key1": "value1", "key2": "value2"]
+dict["key1"] // "value1"
+
+// structs
+struct MyStruct {
+  let key1: String
+  let key2: String
+}
+let struct1 = MyStruct(key1: "value1", key2: "value2")
+struct1.key1 // "value1"
+
+// named tuples
+let tuple1 = (key1: "value1", key2: "value2")
+tuple1.key1 // "value1"
+tuple1.0 // "value1"
 ```
 
 ## keys, values, entries
