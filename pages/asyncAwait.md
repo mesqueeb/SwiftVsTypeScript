@@ -1,6 +1,6 @@
 # Async Await
 
-## Awaiting async function
+## Awaiting async functions
 
 ### Without return value
 
@@ -78,7 +78,19 @@ do {
 }
 ```
 
-## Capturing promises — awaiting later
+## Then / catch
+
+```ts
+promise
+  .then((value) => { /** handle resolved value  */ })
+  .catch((error) => { /** handle error message  */ })
+```
+
+```swift
+// This doesn't really exist in Swift, use try/catch instead
+```
+
+## Capturing promises
 
 ### Without return value
 
@@ -178,19 +190,7 @@ let result = await (Task {
 }).value
 ```
 
-## then / catch
-
-```ts
-promise
-  .then((value) => { /** handle resolved value  */ })
-  .catch((error) => { /** handle error message  */ })
-```
-
-```swift
-// This doesn't really exist in Swift, use `try`/`catch` instead
-```
-
-## await a timeout
+## Awaiting a Timeout
 
 ```ts
 await new Promise<void>((resolve) => setTimeout(resolve, 1_000))
@@ -420,7 +420,7 @@ let values = results.compactMap { value, _ in value }
 let errors = results.compactMap { _, error in error }
 ``` -->
 
-## Manual Promise resolving / rejecting
+## Manual resolving / rejecting
 
 ```ts
 // return a `Promise` from a function to manually resolve or reject
