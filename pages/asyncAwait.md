@@ -1,79 +1,196 @@
 # Async Await
 
-## Promise Instantiation
+## Awaiting async function
+
+### Without return value
 
 ```ts
-// create a promise and capture in a variable to await later
-// with `new Promise` you can manually resolve or reject
-const promise = new Promise<string>((resolve, reject) => {
-  // resolve the promise
-  resolve("resolved value")
-  // OR
-  // reject the promise
-  reject("error message")
-})
-
-// return a promise from a function to manually resolve or reject
-function asyncFunction1(): Promise<void> {
-  return new Promise((resolve, reject) => {/* ... */})
+// Defining an async function always returns a "promise"
+async function querySomething(): Promise<void> {
+  // inside of an async function you can use await
+  await // ...
 }
 
-// an async function allows await usage and returns a promise implicitly
-async function asyncFunction2(): Promise<void> {
-  await /* ... */
+// in an async context you can await the execution
+await querySomething()
+```
+
+```swift
+// Defining an async function
+func querySomething() async -> Void {
+  // inside of an async function you can use await
+  await // ...
+}
+
+// in an async context you can await the execution
+await querySomething()
+```
+
+### With return value
+
+```ts
+// Defining an async function always returns a "promise" that "resolves" with the return value
+async function fetchSomething(): Promise<String> {
+  await // ...
+  return "data"
+}
+
+let result = await fetchSomething()
+```
+
+```swift
+// Defining an async function can be marked to return a value of eg. `String`
+func fetchSomething() async -> String {
+  await // ...
+  return "data"
+}
+
+let result = await fetchSomething()
+```
+
+## Try / catch
+
+```ts
+// Any function _could_ throw, in TS this is not marked via syntax
+async function querySomethingMightThrow(): Promise<void> {
+  await // ...
+}
+
+// await and capture errors with try/catch
+try {
+  await querySomethingMightThrow()
+} catch (error) {
+  console.error(error)
 }
 ```
 
 ```swift
-enum CustomError: Error { case errorCase }
-
-// create a continuation and capture in an async let to await later
-// with `withCheckedThrowingContinuation` you can manually return or throw
-async let fetching = withCheckedThrowingContinuation { continuation in
-  // resume the continuation and return
-  continuation.resume(returning: "resolved value")
-  // OR
-  // resume the continuation and throw
-  continuation.resume(throwing: CustomError.errorCase)
+// A function can only throw if explicitly marked with "throws"
+func querySomethingMightThrow() async throws -> Void {
+  await // ...
 }
 
-// return withCheckedThrowingContinuation from a function to manually return or throw
-func asyncFunction1() async throws {
-  try await withCheckedThrowingContinuation { continuation in /* ... */ }
-}
-
-// an async function allows await usage
-func asyncFunction2() async {
-  await /* ... */
+// await and capture errors with do/try/catch
+do {
+  try await querySomethingMightThrow()
+} catch {
+  print(error)
 }
 ```
 
-## Single Promises
+## Capturing promises — awaiting later
 
-### await a promise
+### Without return value
 
 ```ts
-const promise = fetchSomething()
+// Capture the promise in a variable to await later
+const promise = querySomething()
 // ...
-const value = await promise // the resolved value
+await promise
 ```
 
 ```swift
 // an `async let` instance is similar to a TS `Promise` instance
 // it's used for capturing a single async operation to await later
-async let fetching = fetchSomething()
+async let querying = querySomething()
 // ...
-let value = await fetching // the resolved value
+await querying
 
-// OR create a Task
+// OR
 // a `Task` instance is similar to a TS `Promise` instance
 // you can do multiple async operations within the `Task` body
-let task = Task { await fetchSomething() }
+let task = Task { await querySomething() }
 // ...
-let value = await task.value // the resolved value
+await task.value
 ```
 
-### await timeout
+### With return value
+
+```ts
+// Capture the promise in a variable to await later
+const promise = fetchSomething()
+// ...
+let result = await promise
+```
+
+```swift
+// Capture an async let to await later
+async let fetching = fetchSomething()
+// ...
+let result = await fetching
+
+// OR
+// Wrap in a Task to await later
+let task = Task { await fetchSomething() }
+// ...
+let result = await task.value
+```
+
+## Async IIFE
+
+### Creating an async context
+
+```ts
+// Without a "top-level await" feature, create an async IIFE to create an async context in which you can await
+(async () => {
+  await fetchSomething()
+})()
+```
+
+```swift
+// create a Task to create an async context in which you can await
+Task {
+  await fetchSomething()
+}
+```
+
+### Capturing the result
+
+```ts
+const promise = (async () => {
+  // return something from the async IIFE
+  return await fetchSomething()
+})()
+
+const result = await promise
+```
+
+```swift
+let task = Task {
+  // return something from the Task
+  return await fetchSomething()
+}
+
+let result = await task.value
+```
+
+### Shorter syntax with ()
+
+```ts
+const result = await (async () => {
+  return await fetchSomething()
+})()
+```
+
+```swift
+let result = await (Task {
+  return await fetchSomething()
+}).value
+```
+
+## then / catch
+
+```ts
+promise
+  .then((value) => { /** handle resolved value  */ })
+  .catch((error) => { /** handle error message  */ })
+```
+
+```swift
+// This doesn't really exist in Swift, use `try`/`catch` instead
+```
+
+## await a timeout
 
 ```ts
 await new Promise<void>((resolve) => setTimeout(resolve, 1_000))
@@ -83,93 +200,118 @@ await new Promise<void>((resolve) => setTimeout(resolve, 1_000))
 try? await Task.sleep(for: .milliseconds(1_000))
 ```
 
-### try / catch
+## Promise.allSettled
+
+### Awaiting a couple in parallel
 
 ```ts
-try {
-  const value = await fetchSomething()
-  // handle resolved value
-} catch (error) {
-  // handle error message
-}
+const promise1 = querySomething("a")
+const promise2 = querySomething("b")
+const promise3 = querySomething("c")
+
+// `Promise.allSettled` will await all executions in parallel (and doesn't throw)
+await Promise.allSettled([promise1, promise2, promise3])
 ```
 
 ```swift
-do {
-  let value = try await somethingAsync()
-  // handle returned value
-} catch {
-  // handle error
-}
+async let task1 = querySomething("a")
+async let task2 = querySomething("b")
+async let task3 = querySomething("c")
+
+// a tuple of `async let` will await all executions in parallel
+await (task1, task2, task3)
 ```
 
-### then / catch
+### Awaiting an array in parallel
 
 ```ts
-promise
-  .then((value) => { /** handle resolved value  */ })
-  .catch((error) => { /** handle error message  */ })
+const ids = ["a", "b", "c", /* ... */]
+
+// `Promise.allSettled` will await all executions in parallel (and doesn't throw)
+const promises = ids.map(async (id) => await querySomething(id))
+
+await Promise.allSettled(promises)
 ```
 
 ```swift
-// No equivalent, use do/try/catch instead (see above)
+let ids = ["a", "b", "c", /* ... */]
+
+// `withTaskGroup` will await all executions in parallel
+await withTaskGroup(of: Void.self) { taskGroup in
+  for id in ids {
+    taskGroup.addTask { await querySomething(id) }
+  }
+}
+
+// passing `of: Void.self` means we don't return any values from the taskGroup
+// (see next example for how to return values from a taskGroup)
 ```
 
-## Parallel Promises
+## Promise.all
 
-### Promise.all — fixed length
+### Awaiting a couple in parallel
 
 ```ts
-// `Promise.all` will stop execution of all promises once one fails, rejects with the first error
-const promises = [
-  fetchSomething("a"),
-  fetchSomething("b"),
-  fetchSomething("c")
-]
+const promise1 = fetchSomething("a")
+const promise2 = fetchSomething("b")
+const promise3 = fetchSomething("c")
+
 try {
-  const [value1, value2, value3] = await Promise.all(promises)
+  // `Promise.all` will stop execution of all promises once one fails, rejects with the first error
+  const [value1, value2, value3] = await Promise.all([ promise1, promise2, promise3 ])
 } catch (error) {
   // first found error
 }
 ```
 
 ```swift
-// a tuple of `async let` will await all executions regardless if they throw or not, later it will throw the first error found
-async let task1 = fetchSomething("a")
-async let task2 = fetchSomething("b")
-async let task3 = fetchSomething("c")
+async let task1 = fetchSomethingMightThrow("a")
+async let task2 = fetchSomethingMightThrow("b")
+async let task3 = fetchSomethingMightThrow("c")
 
 do {
+  // a tuple of `async let` will await all executions regardless if they throw or not, later it will throw the first error found
   let (value1, value2, value3) = try await (task1, task2, task3)
 } catch {
   // first found error
 }
 ```
 
-### Promise.all — dynamic length
+### Awaiting an array in parallel
 
 ```ts
-// `Promise.all` will stop execution of all promises once one fails, rejects with the first error
 const ids = ["a", "b", "c", /* ... */]
 const promises = ids.map(async (id) => await fetchSomething(id))
+
 try {
-  const values = await Promise.all(promises)
+  // `Promise.all` will stop execution of all promises once one fails, rejects with the first error
+  const promises = Promise.all(promises)
+  const values = await promises
+  console.log(values)
 } catch (error) {
   // first found error
 }
 ```
 
 ```swift
-// `withThrowingTaskGroup` will stop execution of all tasks once one task throws, and throw that error
+let ids = ["a", "b", "c", /* ... */]
+
 do {
-  let ids = ["a", "b", "c", /* ... */]
-  let values = try await withThrowingTaskGroup(
-    // the type of whatever you return in `addTask`
+  // `withThrowingTaskGroup` might await execution of all tasks depending when one of them threw
+  //      (eg. a network request in progress might still complete when another task threw during it)
+  // `withThrowingTaskGroup` throws the first error found
+  //      (because of parralel execution we don't know which one)
+  async let tasks = withThrowingTaskGroup(
+    // define the type of whatever you return in `addTask`
     of: (Int, String).self
   ) { taskGroup in
+    // prepare the results array with the same length as the number of tasks
     var results: [String] = Array(repeating: "", count: ids.count)
+    
+    // Use `.enumerated()` to grab both the index and the ID
     for (index, id) in ids.enumerated() {
-      taskGroup.addTask { try (index, await fetchSomething(id)) }
+      // these run in parallel, so we must return the index to keep track of the order
+      taskGroup.addTask { try (index, await fetchSomethingMightThrow(id)) }
     }
     // must use `for try await ... in` here
     // even though this is a loop, these awaits run in parallel
@@ -178,12 +320,15 @@ do {
     }
     return results
   }
+  
+  let values = try await tasks
+  print(values)
 } catch {
   // first found error
 }
 ```
 
-### Promise.allSettled — fixed length
+<!-- ### Promise.allSettled — fixed length
 
 ```ts
 // `Promise.allSettled` will await all executions and never throws. It returns an array of results with status
@@ -273,4 +418,34 @@ let results = await withTaskGroup(
 
 let values = results.compactMap { value, _ in value }
 let errors = results.compactMap { _, error in error }
+``` -->
+
+## Manual Promise resolving / rejecting
+
+```ts
+// return a `Promise` from a function to manually resolve or reject
+function asyncFunction(): Promise<void> {
+  return new Promise((resolve, reject) => {
+    // resolve the promise
+    resolve("resolved value")
+    // OR
+    // reject the promise
+    reject("error message")
+  })
+}
+```
+
+```swift
+enum CustomError: Error { case errorCase }
+
+// return `withCheckedThrowingContinuation` from a function to manually return or throw
+func asyncFunction() async throws {
+  try await withCheckedThrowingContinuation { continuation in
+    // resume the continuation and return
+    continuation.resume(returning: "resolved value")
+    // OR
+    // resume the continuation and throw
+    continuation.resume(throwing: CustomError.errorCase)
+  }
+}
 ```
