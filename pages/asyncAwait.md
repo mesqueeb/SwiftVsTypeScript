@@ -236,14 +236,19 @@ await Promise.allSettled(promises)
 ```swift
 let ids = ["a", "b", "c", /* ... */]
 
-// `withTaskGroup` will await all executions in parallel
+// The simpelest way to await in parallel is to create an array of Tasks
+let taskArray = ids.map { id in Task { await querySomething(id) } }
+// The for...in loop here will await all executions in parallel, because the Tasks started executing upon creation
+for task in taskArray { await task.value }
+
+// OR
+// `withTaskGroup` also awaits all executions in parallel, but has more controls for more advanced cases (eg. see Promise.all example)
 await withTaskGroup(of: Void.self) { taskGroup in
   for id in ids {
     taskGroup.addTask { await querySomething(id) }
   }
 }
-
-// passing `of: Void.self` means we don't return any values from the taskGroup
+// passing `of: Void.self` to `withTaskGroup` means we don't return any values from the taskGroup
 // (see next example for how to return values from a taskGroup)
 ```
 
