@@ -14,16 +14,16 @@
 I built a Swift library called [JustSugar](https://swiftpackageindex.com/mesqueeb/justsugar) to help new Swift developers coming from TypeScript. Just sugar does two things:
 
 1. Adds useful Array and String methods inspired by JS like `.at`, `.slice`, `.join`, etc.
-2. Adds all the most common JS Array and String methods to Swift, with deprecation warnings where Swift has an alternative that is just as good.
-    - In this case we want to prefer the Swift method, so a deprecation warning is shown with a comment showing the Swift equivalent to use instead. This is perfect for new Swift developers coming from TypeScript as a quick reference.
+2. Adds all the most common JS Array and String methods to Swift, with a comment showing the Swift equivalent to use instead.
+    - In this case we want to prefer the Swift method, so a deprecation warning will prompt you and shown the Swift equivalent to use instead. This is perfect for new Swift developers coming from TypeScript as a quick reference.
 
 **Example of the .slice method**
 
 <img width="500" alt="example of the slice method" src="https://github.com/mesqueeb/JustSugar/raw/main/docs/public/eg-shorthands.png" />
 
-**Example of JS methods with deprecation warning prompting to use the Swift equivalent**
+**Example of TS methods with deprecation warning prompting to use the Swift equivalent**
 
-<img width="800" alt="example of JS methods with deprecation warning" src="https://github.com/mesqueeb/JustSugar/raw/main/docs/public/eg-deprecations.png" />
+<img width="800" alt="example of TS methods with deprecation warning" src="https://github.com/mesqueeb/JustSugar/raw/main/docs/public/eg-deprecations.png" />
 
 ## JustSugar Documentation
 
