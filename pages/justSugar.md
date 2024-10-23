@@ -15,7 +15,7 @@ I built a Swift library called [JustSugar](https://swiftpackageindex.com/mesquee
 
 1. Adds useful Array and String methods inspired by JS like `.at`, `.slice`, `.join`, etc.
 2. Adds all the most common JS Array and String methods to Swift, with deprecation warnings where Swift has an alternative that is just as good.
-    - In this case we want to prefer the Swift method, so a deprecation warning is shown when reaching for the JS method. This is perfect for new Swift developers coming from JavaScript or TypeScript.
+    - In this case we want to prefer the Swift method, so a deprecation warning is shown with a comment showing the Swift equivalent to use instead. This is perfect for new Swift developers coming from TypeScript as a quick reference.
 
 **Example of the .slice method**
 
