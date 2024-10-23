@@ -202,7 +202,7 @@ try? await Task.sleep(for: .milliseconds(1_000))
 
 ## Promise.allSettled
 
-### Awaiting a couple in parallel
+### Awaiting in parallel
 
 ```ts
 const promise1 = querySomething("a")
@@ -222,7 +222,7 @@ async let task3 = querySomething("c")
 await (task1, task2, task3)
 ```
 
-### Awaiting an array in parallel
+### Awaiting a promise array in parallel
 
 ```ts
 const ids = ["a", "b", "c", /* ... */]
@@ -249,7 +249,7 @@ await withTaskGroup(of: Void.self) { taskGroup in
 
 ## Promise.all
 
-### Awaiting a couple in parallel
+### Awaiting in parallel
 
 ```ts
 const promise1 = fetchSomething("a")
@@ -277,7 +277,7 @@ do {
 }
 ```
 
-### Awaiting an array in parallel
+### Awaiting a promise array in parallel
 
 ```ts
 const ids = ["a", "b", "c", /* ... */]
